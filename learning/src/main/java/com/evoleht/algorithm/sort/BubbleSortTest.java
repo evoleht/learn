@@ -19,7 +19,7 @@ public class BubbleSortTest {
 		int len = result_arr.length;
 		for (int i = 0; i < result_arr.length; i++) {
 			for (int j = 0; j < len-1; j++) {
-				if (result_arr[j] < result_arr[j+1]) {
+				if (result_arr[j] > result_arr[j+1]) {
 					int tmp = result_arr[j];
 					result_arr[j] = result_arr[j+1];
 					result_arr[j+1] = tmp;
@@ -30,12 +30,36 @@ public class BubbleSortTest {
 		return result_arr;
 	}
 	
+	public int[] sortTwo(int target[]){
+		int [] arr = target;
+		int len = arr.length;
+		boolean flag = true;
+		while(flag) {
+			flag = false;
+			for (int i = 1; i < len; i++) {
+				if (arr[i-1] > arr[i]) {
+					int tmp = arr[i-1];
+					arr[i-1] = arr[i];
+					arr[i] = tmp;
+					flag = true;
+				}
+			}
+			len--;
+		}
+		return arr;
+	}
+	
 	public static void main(String[] args) {
 		int arr[] = {3,6,2,8,1,20,32,11};
 		BubbleSortTest sortTest = new BubbleSortTest();
 		int [] resunt = sortTest.sort(arr);
 		for (int i = 0; i < resunt.length; i++) {
 			System.out.print(resunt[i]+" ");
+		}
+		System.out.println();
+		int [] resunt2 = sortTest.sortTwo(arr);
+		for (int i = 0; i < resunt2.length; i++) {
+			System.out.print(resunt2[i]+" ");
 		}
 	}
 }
