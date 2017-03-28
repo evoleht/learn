@@ -1,22 +1,22 @@
-1.github ´´½¨ĞÂ²Ö
+1.github åˆ›å»ºæ–°ä»“
 
-±¾µØ°æ±¾¿â£º
+æœ¬åœ°ç‰ˆæœ¬åº“ï¼š
 
-´´½¨ ÎÄ¼ş¼Ğ git
+åˆ›å»º æ–‡ä»¶å¤¹ git
 
 cd git
 
-Í¨¹ıgit initÃüÁî°ÑÕâ¸öÄ¿Â¼±ä³ÉGit¿ÉÒÔ¹ÜÀíµÄ²Ö¿â
+é€šè¿‡git initå‘½ä»¤æŠŠè¿™ä¸ªç›®å½•å˜æˆGitå¯ä»¥ç®¡ç†çš„ä»“åº“
 
 git init
 
-±¾µØ°æ±¾¿â´´½¨Íê³É
+æœ¬åœ°ç‰ˆæœ¬åº“åˆ›å»ºå®Œæˆ
 
 
  
-github °æ±¾¿â´´½¨ 
+github ç‰ˆæœ¬åº“åˆ›å»º 
 
-1¡£¡­or create a new repository on the command line
+1ã€‚â€¦or create a new repository on the command line
 
 echo "# learn" >> README.md
 git init
@@ -27,25 +27,31 @@ git push -u origin master
 
 
 
-2¡£¡­or push an existing repository from the command line
+2ã€‚â€¦or push an existing repository from the command line
 
 git remote add origin https://github.com/evoleht/learn.git
 git push -u origin master
 
 
-3¡£¡­or import code from another repository
+3ã€‚â€¦or import code from another repository
 
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
 
 
-³£ÓÃÃüÁî£º
+å¸¸ç”¨å‘½ä»¤ï¼š
 
-add¸æËßGit£¬°ÑÎÄ¼şÌí¼Óµ½²Ö¿â
+addå‘Šè¯‰Gitï¼ŒæŠŠæ–‡ä»¶æ·»åŠ åˆ°ä»“åº“
 
-°Ñ×îĞÂÄÚÈİÍÆËÍµ½github
+æŠŠæœ€æ–°å†…å®¹æ¨é€åˆ°github
 git push origin master
 
-È¡»ØÔ¶³ÌÖ÷»úÄ³¸ö·ÖÖ§µÄ¸üĞÂ
+å–å›è¿œç¨‹ä¸»æœºæŸä¸ªåˆ†æ”¯çš„æ›´æ–°
 
 git pull origin master
+
+å¼ºåˆ¶è¦†ç›–æœ¬åœ°ç‰ˆæœ¬åº“
+git fetch --all  
+git reset --hard origin/master 
+
+git pull
