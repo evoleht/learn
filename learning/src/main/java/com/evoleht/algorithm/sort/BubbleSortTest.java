@@ -17,8 +17,11 @@ public class BubbleSortTest {
 	public int[] sort(int arr[]) {
 		int[] result_arr = arr;
 		int len = result_arr.length;
+		System.out.println("一共有" + len + "个数据需要排序");
 		for (int i = 0; i < result_arr.length; i++) {
+			System.out.println("第" + (i+1) + "次冒泡排序");
 			for (int j = 0; j < len-1; j++) {
+				System.out.println("第" + (i+1) + "次冒泡排序,遍历第个" + (j+1) + "数据");
 				if (result_arr[j] > result_arr[j+1]) {
 					int tmp = result_arr[j];
 					result_arr[j] = result_arr[j+1];
@@ -30,13 +33,21 @@ public class BubbleSortTest {
 		return result_arr;
 	}
 	
+	/**
+	 * 改良版：
+	 * 如果某一次遍历没有发生交换，我们可以认为剩下的数据已经是有序的
+	 * 结束排序
+	 */
 	public int[] sortTwo(int target[]){
 		int [] arr = target;
 		int len = arr.length;
+		System.out.println("一共有" + len + "个数据需要排序");
 		boolean flag = true;
 		while(flag) {
+			System.out.println("第" + (arr.length + 1 - len) + "次冒泡排序");
 			flag = false;
 			for (int i = 1; i < len; i++) {
+				System.out.println("第" + (arr.length + 1 - len) + "次冒泡排序,遍历第个" + i + "数据");
 				if (arr[i-1] > arr[i]) {
 					int tmp = arr[i-1];
 					arr[i-1] = arr[i];
@@ -49,6 +60,19 @@ public class BubbleSortTest {
 		return arr;
 	}
 	
+	public int[] sortThree(int target[]) {
+		int []arr = target;
+		int len = arr.length;
+		int k = len;
+		while(k > 0) {
+			for (int i = 0; i < k; i++) {
+				
+			}
+		}
+		
+		return arr;
+	}
+	
 	public static void main(String[] args) {
 		int arr[] = {3,6,2,8,1,20,32,11};
 		BubbleSortTest sortTest = new BubbleSortTest();
@@ -57,7 +81,8 @@ public class BubbleSortTest {
 			System.out.print(resunt[i]+" ");
 		}
 		System.out.println();
-		int [] resunt2 = sortTest.sortTwo(arr);
+		int arr1[] = {3,6,2,8,1,20,32,11};
+		int [] resunt2 = sortTest.sortTwo(arr1);
 		for (int i = 0; i < resunt2.length; i++) {
 			System.out.print(resunt2[i]+" ");
 		}
