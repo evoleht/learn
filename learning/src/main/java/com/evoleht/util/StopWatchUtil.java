@@ -24,7 +24,7 @@ public class StopWatchUtil {
 		hasEnded = true;
 	}
 	
-	public void end() throws IllegalOperationException {
+	public void end() {
 		if(!hasStarted) {
 			throw new IllegalOperationException("调用StopWatch的end()方法之前请先调用start()方法");
 		}
@@ -47,7 +47,7 @@ public class StopWatchUtil {
 	 * @return 耗时总毫秒数
 	 * @throws  
 	 */
-	public long getEclapsedMillis() throws IllegalOperationException {
+	public long getEclapsedMillis() {
 		if(!hasEnded) {
 			throw new IllegalOperationException("请先调用end()方法");
 		}
@@ -59,7 +59,7 @@ public class StopWatchUtil {
 	 * @return 消耗的时间，单位为秒
 	 * @throws 
 	 */
-	public long getEclapsedSeconds() throws IllegalOperationException {
+	public long getEclapsedSeconds() {
 		return this.getEclapsedMillis() / 1000; 
 	}
 	
@@ -67,7 +67,7 @@ public class StopWatchUtil {
 	 * 获取总耗时，单位为分钟 
 	 * @return 消耗的时间，单位为分钟
 	 */
-	public long getEclapsedMinutes() throws IllegalOperationException {
+	public long getEclapsedMinutes() {
 		return this.getEclapsedMillis() / (1000 * 60);
 	}
 	
@@ -82,7 +82,7 @@ public class StopWatchUtil {
 	/**
 	 * 输入任务耗时情况,默认时间单位为毫秒
 	 */
-	public void printEclapseDetai() throws IllegalOperationException {
+	public void printEclapseDetai() {
 		this.printEclapseDetail(TimeUnit.MILLI);
 	}
 	
@@ -90,7 +90,7 @@ public class StopWatchUtil {
 	 *  输入任务耗时情况,可以指定毫秒、秒、分钟三种时间单位
 	 * @param timeUnit 时间单位
 	 */
-	public void printEclapseDetail(TimeUnit timeUnit) throws IllegalOperationException {
+	public void printEclapseDetail(TimeUnit timeUnit) {
 		switch (timeUnit) {
 		case MILLI:
 			System.out.println(this.getTaskName() + "任务耗时(毫秒) : " + this.getEclapsedMillis());
