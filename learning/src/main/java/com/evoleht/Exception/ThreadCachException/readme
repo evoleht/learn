@@ -1,0 +1,35 @@
+Java多线程中，所有的线程都不允许抛出未捕获的 checked exception，也就是说每个线程都需要自己把自己的
+checked exception 处理掉。这点是通过 java.lang.Runnable.run()方法声明进行了约束（run 方法上无法向外 抛出异常）。
+但是线程可以抛出 unchecked exception(如运行时异常)。当此类异常抛出时，线程就会终止，而对于其它线程或者主线程没有任何影响，
+且无法感知到是哪个线程抛出了异常，也就是说无法捕获到这个异常。
+JVM的这种设计来源于这样一个理念："线程是独立执行的代码段，线程的问题应该由线程自己来解决，而不要委托到外部"。
+所以，在java中，线程方法的异常（无论checked 还是 unchecked exception），都应该在线程代码边界之内（run方法之内）进行
+try catch并处理掉。
+
+所以说，如果run 方法内未处理异常的话，我们是无法捕捉到线程逃逸的异常。
+
+javaSE5中提供了Threa.UnCaughtExceptionHandler接口，它允许你为每个Thread对象都附上一个异常处理器。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
