@@ -21,7 +21,7 @@ public class StopWatchUtil {
 	
 	public void start() {
 		start = System.currentTimeMillis();
-		hasEnded = true;
+		hasStarted = true;
 	}
 	
 	public void end() {
