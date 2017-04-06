@@ -1,0 +1,22 @@
+
+扩充机制
+1.HashMap  (HashSet)
+初始容量 16，加载因子0.75
+扩充为原来的2倍
+扩充时机 newSize >= oldSize*0.75
+扩充方式 new Entry[] 遍历旧的map 重新计算hash值。同一bucket上的元素顺序颠倒。
+
+
+
+2.HashTable 
+初始容量11， 加载因子0.75
+扩充为原来的2倍+1
+扩充时机 newSize >= oldSize*0.75
+扩充方式 new Entry[] 遍历旧的map 重新计算hash值。同一bucket上的元素顺序颠倒。
+
+
+3.ArrayList 
+初始容量为10 
+扩充为 1.5倍 + 1
+扩充时机 newLength > oldLength
+扩充方式 新创建空间，arrayCopy

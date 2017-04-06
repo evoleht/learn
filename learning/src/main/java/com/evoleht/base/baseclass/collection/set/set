@@ -1,0 +1,4 @@
+1.HashSet底层是采用HashMap实现
+HashSet add 的object存放在HashMap的Key中
+需要重写 object的hashcode() 和 equals() 方法
+所以HashSet 里面无法存放重复的数据。

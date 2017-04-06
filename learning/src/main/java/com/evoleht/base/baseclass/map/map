@@ -1,0 +1,35 @@
+
+
+区别：
+HashMap与HashTable
+
+HashMap 允许key 和value 为null 的情况。
+当key 为null时，默认放在第一个位置，bucketIndex 为0
+
+HashTable 不允许 key 和value 为null
+当key 为null时， 计算key.hash() 会抛出异常
+当value 为null时，主动抛出NullPointerException
+
+算法不同：
+HashMap 会先取得key的hash值，在进行一次hash算法,取得的结果在跟 size 做一次&操作
+HashTable 会取得key的hash值与0x7FFFFFFF做&操作,然后对size取模
+
+多线程：
+HashMap 为线程不安全
+HashTable 为线程安全，方法上都有synchronized同步关键字。
+
+HashMap 想要实现线程安全可以采用 SynchronizedMap(map)方法。
+或者采用 ConcurrentHashMap。
+
+
+
+ConcurrentHashMap 采用锁分段技术
+
+主要的段为 Segment
+ConcurrentHashMap get()时, 先找到对应的Segment，然后找到对应的Entry对象,如果值不为null 则直接返回，如果为null则加锁重新读取。
+size()时，不是直接加锁，而是先两次循环累加各个段的count值,如果两次相等，则返回累加值，不相等则在尝试一次，还是不相等则所有的段顺序加锁。统计之后释放锁。
+在累加count时，还对modcount进行了比较。
+
+containsValue() 不直接使用锁，先尝试两次，循环Segment，比较每个Segment下的Entry，如果匹配，返回true，如果未查找到，监测期间是否有修改操作
+两次尝试之后为查找到数据则遍历Segment,对每个Segment 加锁，比对，释放锁、
+
