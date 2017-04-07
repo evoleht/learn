@@ -55,3 +55,8 @@ git fetch --all
 git reset --hard origin/master 
 
 git pull
+
+
+
+eclipse 提交时忽略target文件夹方法：
+选中需要忽略的文件夹或文件，右键Team  选择Ignore 即可
