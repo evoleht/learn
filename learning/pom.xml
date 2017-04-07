@@ -29,8 +29,15 @@
 	    <groupId>org.apache.commons</groupId>  
 	    <artifactId>commons-lang3</artifactId>  
 	    <version>3.3.2</version>  
-	</dependency>  
+	</dependency>
+	
+	<dependency>  
+	    <groupId>org.mongodb</groupId>  
+	    <artifactId>mongo-java-driver</artifactId>  
+	    <version>3.2.0</version>  
+	</dependency>
   </dependencies>
+  
   <build>
     <finalName>learning</finalName>
   </build>
