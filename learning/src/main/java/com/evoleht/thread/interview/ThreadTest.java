@@ -1,5 +1,8 @@
 package com.evoleht.thread.interview;
 
+/**
+ * 线程运行结果
+ */
 public class ThreadTest {
 	
 	public void methodA() {
