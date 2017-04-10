@@ -7,7 +7,6 @@
 扩充方式 new Entry[] 遍历旧的map 重新计算hash值。同一bucket上的元素顺序颠倒。
 
 
-
 2.HashTable 
 初始容量11， 加载因子0.75
 扩充为原来的2倍+1
