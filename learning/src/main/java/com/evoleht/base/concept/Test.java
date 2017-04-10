@@ -14,5 +14,6 @@ public class Test {
 		
 		HashSet<Object> set = new HashSet<Object>();
 		set.add("");
+		
 	}
 }
