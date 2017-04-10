@@ -3,7 +3,7 @@
 1）Java的数据结构相关的类实现原理，比如LinkedList，ArrayList，HashMap，TreeMap这一类的。以下简单模拟一个数据结构的连环炮。
 
 HashMap是不是有序的?
-HashMap是根据key的hash值去查找存放数据，不能保证输入的顺序和根据Iterator变量出来的顺序一致。
+HashMap是根据key的hash值去查找存放数据，访问速度很快。遍历时，输出顺序是随机的。
 
 有没有有顺序的Map实现类？
 
@@ -11,8 +11,13 @@ TreeMap，LinkedHashMap
 
 TreeMap和LinkedHashMap是如何保证它的顺序的？
 
-TreeMap采用的是红黑树。它是一种有序的二叉树结构
-LikedHashMap 是hashmap 与 双向链表的形式， 可以设置按插入顺序排序还是按最近访问顺序排序
+#TreeMap采用的是红黑树。它是一种有序的二叉树结构
+#LikedHashMap 是hashmap 与 双向链表的形式， 可以设置按插入顺序排序还是按最近访问顺序排序
+TreeMap实现了SortMap接口，能够把把它保存的记录按键值做排序，默认是按升序排序，也可以指定排序比较器，
+当用Iterator遍历时，输出的结果就是排过序的。
+
+LinkedHashMap是HashMap的子类，能够保存记录的插入顺序，当用Iterator遍历时，得到的是一个插入顺序，也可以指定按最近使用情况排序
+
 
 你觉得它们两个哪个的有序实现比较好？
 
