@@ -1,9 +1,9 @@
 package com.evoleht.algorithm;
 
 public class ListNode {
-	int val;
-	ListNode next = null;
-	ListNode(int val) {
+	public int val;
+	public ListNode next = null;
+	public ListNode(int val) {
 		this.val = val;
 	}
 }
