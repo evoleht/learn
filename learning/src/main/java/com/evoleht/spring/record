@@ -1,0 +1,12 @@
+spring 配置Action Bean时， scope 一定要设置为 scope = "prototype"
+因为spring默认bean 是单例模式，如果action是单例的话，每次请求的都是同一个action,数据不安全。
+配置为prototype 保证每次请求都是单独重新生成一个action来处理这个请求。
+
+Bean 的作用范围
+scope：
+1.singleton：单例
+2.prototype:每次请求生成一个新的对bean，当对象实例返回之后，容器就不在拥有实例的引用
+3.request
+4.session
+5.global session
+
