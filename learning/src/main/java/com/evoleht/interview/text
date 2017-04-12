@@ -1,0 +1,34 @@
+二级索引
+讲讲数据库死锁
+线程死锁，怎么解决
+session cookie区别
+memcache 原理 怎么保证并发的
+
+java class类内存是什么样的
+
+volite关键字
+
+ibatis 动态sql原理
+
+sql 预装的作用
+
+ibatis ##号与$区别
+有什么好处
+
+线程池 有哪几种  有什么好处
+
+threadlocal，使用过么，做什么用的
+
+jvm 调优参数
+
+hashmap原理 集合类
+
+atlas 怎么实现读写分离的
+
+反射 应用场景 性能怎么样
+
+
+MySql中varchar(10)和varchar(100)的区别
+
+
+重定向
