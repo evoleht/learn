@@ -193,7 +193,9 @@ public class ThreadLocal<T> {
      * @return the map
      */
     ThreadLocalMap getMap(Thread t) {
-        return t.threadLocals;
+    	return null;
+    	/** 报错，暂时注释 */
+//        return t.threadLocals;
     }
 
     /**
@@ -205,7 +207,8 @@ public class ThreadLocal<T> {
      * @param map the map to store.
      */
     void createMap(Thread t, T firstValue) {
-        t.threadLocals = new ThreadLocalMap(this, firstValue);
+    	/** 报错，暂时注释 */
+//        t.threadLocals = new ThreadLocalMap(this, firstValue);
     }
 
     /**

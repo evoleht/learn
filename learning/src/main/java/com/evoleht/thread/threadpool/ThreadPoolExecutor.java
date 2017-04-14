@@ -521,8 +521,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 
      * 默认线程池饱和策略，抛出异常
      */
-    private static final RejectedExecutionHandler defaultHandler =
-        new AbortPolicy();
+    private static final RejectedExecutionHandler defaultHandler = null;
+//        new AbortPolicy();
 
     // Constructors
 
@@ -871,7 +871,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * 抛出异常
      */
     void reject(Runnable command) {
-        handler.rejectedExecution(command, this);
+    	/** 报错，暂时注释 */
+//        handler.rejectedExecution(command, this);
     }
 
 
@@ -1865,89 +1866,89 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
      * unless the executor has been shut down, in which case the task
      * is discarded.
      */
-    public static class CallerRunsPolicy implements RejectedExecutionHandler {
-        /**
-         * Creates a <tt>CallerRunsPolicy</tt>.
-         */
-        public CallerRunsPolicy() { }
-
-        /**
-         * Executes task r in the caller's thread, unless the executor
-         * has been shut down, in which case the task is discarded.
-         * @param r the runnable task requested to be executed
-         * @param e the executor attempting to execute this task
-         */
-        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            if (!e.isShutdown()) {
-                r.run();
-            }
-        }
-    }
+//    public static class CallerRunsPolicy implements RejectedExecutionHandler {
+//        /**
+//         * Creates a <tt>CallerRunsPolicy</tt>.
+//         */
+//        public CallerRunsPolicy() { }
+//
+//        /**
+//         * Executes task r in the caller's thread, unless the executor
+//         * has been shut down, in which case the task is discarded.
+//         * @param r the runnable task requested to be executed
+//         * @param e the executor attempting to execute this task
+//         */
+//        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+//            if (!e.isShutdown()) {
+//                r.run();
+//            }
+//        }
+//    }
 
     /**
      * A handler for rejected tasks that throws a
      * <tt>RejectedExecutionException</tt>.
      */
-    public static class AbortPolicy implements RejectedExecutionHandler {
-        /**
-         * Creates an <tt>AbortPolicy</tt>.
-         */
-        public AbortPolicy() { }
-
-        /**
-         * Always throws RejectedExecutionException.
-         * @param r the runnable task requested to be executed
-         * @param e the executor attempting to execute this task
-         * @throws RejectedExecutionException always.
-         */
-        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            throw new RejectedExecutionException();
-        }
-    }
+//    public static class AbortPolicy implements RejectedExecutionHandler {
+//        /**
+//         * Creates an <tt>AbortPolicy</tt>.
+//         */
+//        public AbortPolicy() { }
+//
+//        /**
+//         * Always throws RejectedExecutionException.
+//         * @param r the runnable task requested to be executed
+//         * @param e the executor attempting to execute this task
+//         * @throws RejectedExecutionException always.
+//         */
+//        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+//            throw new RejectedExecutionException();
+//        }
+//    }
 
     /**
      * A handler for rejected tasks that silently discards the
      * rejected task.
      */
-    public static class DiscardPolicy implements RejectedExecutionHandler {
-        /**
-         * Creates a <tt>DiscardPolicy</tt>.
-         */
-        public DiscardPolicy() { }
-
-        /**
-         * Does nothing, which has the effect of discarding task r.
-         * @param r the runnable task requested to be executed
-         * @param e the executor attempting to execute this task
-         */
-        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-        }
-    }
+//    public static class DiscardPolicy implements RejectedExecutionHandler {
+//        /**
+//         * Creates a <tt>DiscardPolicy</tt>.
+//         */
+//        public DiscardPolicy() { }
+//
+//        /**
+//         * Does nothing, which has the effect of discarding task r.
+//         * @param r the runnable task requested to be executed
+//         * @param e the executor attempting to execute this task
+//         */
+//        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+//        }
+//    }
 
     /**
      * A handler for rejected tasks that discards the oldest unhandled
      * request and then retries <tt>execute</tt>, unless the executor
      * is shut down, in which case the task is discarded.
      */
-    public static class DiscardOldestPolicy implements RejectedExecutionHandler {
-        /**
-         * Creates a <tt>DiscardOldestPolicy</tt> for the given executor.
-         */
-        public DiscardOldestPolicy() { }
-
-        /**
-         * Obtains and ignores the next task that the executor
-         * would otherwise execute, if one is immediately available,
-         * and then retries execution of task r, unless the executor
-         * is shut down, in which case task r is instead discarded.
-         * @param r the runnable task requested to be executed
-         * @param e the executor attempting to execute this task
-         */
-        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            if (!e.isShutdown()) {
-                e.getQueue().poll();
-                e.execute(r);
-            }
-        }
-    }
+//    public static class DiscardOldestPolicy implements RejectedExecutionHandler {
+//        /**
+//         * Creates a <tt>DiscardOldestPolicy</tt> for the given executor.
+//         */
+//        public DiscardOldestPolicy() { }
+//
+//        /**
+//         * Obtains and ignores the next task that the executor
+//         * would otherwise execute, if one is immediately available,
+//         * and then retries execution of task r, unless the executor
+//         * is shut down, in which case task r is instead discarded.
+//         * @param r the runnable task requested to be executed
+//         * @param e the executor attempting to execute this task
+//         */
+//        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+//            if (!e.isShutdown()) {
+//                e.getQueue().poll();
+//                e.execute(r);
+//            }
+//        }
+//    }
 }
