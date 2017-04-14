@@ -1,0 +1,62 @@
+
+memcached-1.4.15分析与总结
+
+http://blog.chinaunix.net/uid-28781890-id-3566082.html
+
+memcache原理结构图解
+
+http://blog.csdn.net/gxl0805/article/details/8969853
+
+Memcached源码分析之内存管理
+
+http://calixwu.com/2014/11/memcached-yuanmafenxi-neicunguanli.html
+
+Memcached 源码分析系列文章
+
+http://blog.csdn.net/column/details/lc-memcached.html?page=1
+
+
+Xmemcache github
+
+https://github.com/killme2008/xmemcached/wiki
+
+
+
+Xmemcache 的简单使用
+	https://my.oschina.net/Chaos777/blog/549893
+
+
+高性能缓存Memcached使用教程 
+ 	http://blog.csdn.net/chenleixing/article/details/47016555
+
+
+MemCache详细解读
+ 	http://www.cnblogs.com/xrq730/p/4948707.html
+
+
+JAVA MemCache 史无前例的详细讲解！看完包精通MEMCACHE！ 
+ 	http://blog.csdn.net/hjm4702192/article/details/7894080
+
+
+memcached-java客户端xmemcached简单使用 
+	http://blog.csdn.net/jthink_/article/details/43267125
+
+
+XMemcached使用 
+	http://blog.csdn.net/ljhabc1982/article/details/6338898
+
+
+memcache cas 协议
+	http://langyu.iteye.com/blog/680052
+
+	
+memcached 原子性操作 CAS模式  
+	http://zhengjunwei2007.blog.163.com/blog/static/3529794220117325112464/
+
+
+XMemcached 中文api	
+	http://blog.csdn.net/yangkai_hudong/article/details/38017553?utm_source=tuicool&utm_medium=referral
+	
+	
+Java之XMemcached使用及源码详解
+	http://www.linuxidc.com/Linux/2015-02/113101.htm
