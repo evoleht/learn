@@ -1,6 +1,28 @@
 package com.evoleht.memcache;
 
 /**  
+ * ---------------4.15----------------------------
+ * memcache是一个键值对存储的hashmap，数据存储在内存中，相对于传统数据库，访问速度会很快，因为传统数据库为了
+ * 数据的持久性，会将数据存放在磁盘上，io读写时速度相对慢。
+ * memcacahe内存模型：
+ * memcache内存模型中有几个概念，slab、chunk、slabclass
+ * 
+ * memcache会将内存预先分配为几个slabclass，每个slabclass存储的数据大小都是相同的，
+ * 相邻slabclass的大小默认是按1.25倍增长。
+ * 每个slabclass下是一组slab，memcache又将slab切割成一组chunk，chunk是真正存放数据的地方
+ * chunk的大小是按slabclass中的 chunksize 进行分配。
+ * 每个slabclass中又维护了一个slots链表来记录空闲chunk，还有个lru链表来跟踪items的使用情况
+ * 
+ * 当我们set数据时，根据数据的大小，找到相应的slabclass，会访问下lru链表来是否有过期的空间可以使用，使用了个
+ * for循环的方式，默认查找5次，看是否能找到合适的空间，如果没有的话，则去slots链表查找是否有空间可以使用，
+ * 如果没有剩余空间可以使用，则申请一个新的slab来分配空间，如果空间已经使用完，无法在分配的话，则再去查找lru维护的
+ * 链表将最后使用的空间清除。找到空间之后将items存储在这个空间内，同时会将数据维护在一个hashmap中。
+ * 
+ * 
+ * 
+ * 
+ * 
+ * -------------------------------------------
  * memcache 是一个存储键值对的HashMap。
  * memecache 虽然被称为“分布式缓存”，但是它本身完全不具备分布式的功能。memcache集群之间不会相互通信。
  * 所谓的“分布式”完全依赖客户端程序代码实现。
