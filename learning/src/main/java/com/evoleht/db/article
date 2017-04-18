@@ -9,3 +9,23 @@ http://blog.csdn.net/zyz511919766/article/details/49451343
 
 （一）MySQL InnoDB事务模型 
 http://blog.csdn.net/zyz511919766/article/details/49450849
+
+
+
+---------------------------MVCC------------------------------------------
+Mysql InnoDB MVCC 实现原理
+http://www.jianshu.com/p/2ecc3d1b7b65
+
+InnoDB多版本(MVCC)实现简要分析
+http://hedengcheng.com/?p=148
+
+MYSQL MVCC 实现原理
+http://blog.csdn.net/bigtree_3721/article/details/68942273
+
+深入浅出INNODB MVCC机制与原理
+http://blogread.cn/it/article/5969
+
+【mysql】关于innodb中MVCC的一些理解
+http://www.cnblogs.com/chenpingzhao/p/5065316.html
+---------------------------------------------------------------------
+
