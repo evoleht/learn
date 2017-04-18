@@ -1,4 +1,4 @@
-package com.evoleht.base.fieldOverrid.example;
+package com.evoleht.base.classextends.fieldOverrid.example;
 
 public class Sub extends Super {
 	

@@ -1,4 +1,4 @@
-package com.evoleht.interview.interviewclass.extend;
+package com.evoleht.base.classextends.extend;
 
 public class ClassC extends ClassB{
 	
