@@ -1,0 +1,8 @@
+synchronized 锁定静态方法与非静态方法的区别
+
+锁定静态方法，锁对象是class.对所有的该class 的实例变量都起作用。
+锁定非静态方法，锁的对象是该class的实例变量，只对该实例变量起作用。
+
+同步块的方式： 
+synchronized(BussessClass.class) 锁对象是class，对所有的实例变量起作用
+synchronized(this) 锁对象是当前实例对象，只对该实例变量起作用

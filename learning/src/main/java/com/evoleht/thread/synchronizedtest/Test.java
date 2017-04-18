@@ -14,6 +14,10 @@ public class Test {
 			b.setName("线程B"+i);
 			b.start();
 			
+			Thread c = new ThreadC(bussess);
+			c.setName("线程C"+i);
+			c.start();
+			
 			Thread aa = new ThreadA(bussess2);
 			aa.setName("线程Aa"+i);
 			aa.start();
@@ -21,6 +25,10 @@ public class Test {
 			Thread bb = new ThreadB(bussess2);
 			bb.setName("线程Bb"+i);
 			bb.start();
+			
+			Thread cc = new ThreadC(bussess2);
+			cc.setName("线程Cc"+i);
+			cc.start();
 			
 		}
 		

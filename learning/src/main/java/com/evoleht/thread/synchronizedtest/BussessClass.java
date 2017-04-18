@@ -20,4 +20,15 @@ public class BussessClass {
 			e.printStackTrace();
 		}
 	}
+	
+	public void methodC() {
+		synchronized(this) {
+			System.out.println("线程：" + Thread.currentThread().getName() + "正在执行methodC()....");
+			try {
+				Thread.sleep(20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
