@@ -12,9 +12,9 @@ public class Test {
 	public static void main(String[] args) {
 		try {
 			Sub sub_s = new Sub();
-			sub_s.setAge(11);
+			sub_s.setAge(22);//年龄set 22岁
 			sub_s.setUsername("li");
-			sub_s.setDec("aaa");
+			sub_s.setDec("li is a man");
 			
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("sub.obj"));
 			out.writeObject(sub_s);
@@ -23,9 +23,9 @@ public class Test {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("sub.obj"));
 			Sub sub = (Sub) in.readObject();
 			in.close();
-			System.out.println(sub.getDec());//子类实现了序列化，可以正常获取字段值
-			System.out.println(sub.getUsername());//父类未实现序列化，字段值为类初始值
-			System.out.println(sub.getAge());//父类未实现序列化，字段值为类初始值
+			System.out.println(sub.getDec());
+			System.out.println(sub.getUsername());
+			System.out.println(sub.getAge());
 			
 			
 		} catch (FileNotFoundException e) {

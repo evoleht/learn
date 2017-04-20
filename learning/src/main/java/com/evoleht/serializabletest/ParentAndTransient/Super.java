@@ -2,10 +2,8 @@ package com.evoleht.serializabletest.ParentAndTransient;
 
 public class Super {
 	
-	
 	private String username;
 	private int age;
-	
 	
 	public String getUsername() {
 		return username;

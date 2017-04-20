@@ -15,5 +15,4 @@ public class Sub extends Super implements Serializable{
 		this.dec = dec;
 	}
 	
-	
 }
