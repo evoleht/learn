@@ -27,6 +27,8 @@ public class Test implements Serializable{
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("test.class"));
 		
 			Test t = (Test) in.readObject();
+			in.close();
+			
 			//再次读取后通打印staticVar的值
 			System.out.println(t.staticVar);
 			
