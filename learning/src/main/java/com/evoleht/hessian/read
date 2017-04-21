@@ -1,0 +1,35 @@
+几种通讯协议的比较
+
+
+
+关于RPC、HTTP、WebService的区别
+
+https://segmentfault.com/q/1010000003049016
+
+
+RPC
+
+http://www.jianshu.com/p/5bd3dda1392a
+
+
+
+为什么需要RPC，而不是简单的HTTP接口
+https://www.oschina.net/question/271044_2155059?sort=default&p=1
+
+
+
+http接口、api接口、RPC接口、RMI、webservice、Restful等概念
+
+https://my.oschina.net/heavenly/blog/499661
+
+
+Hessian 原理分析
+
+http://blog.csdn.net/zhtang0526/article/details/4788879
+
+hessian 协议
+
+http://www.cnblogs.com/evolcq/p/hessian.html
+
+ Hessian轻量级二进制远程调用框架
+http://blog.csdn.net/huoyijie/article/details/5899327
