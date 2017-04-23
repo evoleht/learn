@@ -1,10 +1,10 @@
-package com.evoleht.io.bio;
+package com.evoleht.io.biowithpoo;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import com.sun.swing.internal.plaf.synth.resources.synth;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * BIO服务端
@@ -19,6 +19,7 @@ public class ServerNormal {
 	/** serversocket */
 	private static ServerSocket server;
 	
+	private static ExecutorService pool  = Executors.newFixedThreadPool(50);
 	public static void start() throws IOException {
 		start(DEFAULT_PORY);
 	}
@@ -31,7 +32,7 @@ public class ServerNormal {
 			Socket socket;
 			while(true) {
 				socket = server.accept();
-				new Thread(new ServerHandler(socket)).start();
+				pool.execute(new ServerHandler(socket));
 			}
 		} finally {
 			if(server != null) {
