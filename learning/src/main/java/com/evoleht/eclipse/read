@@ -1,0 +1,13 @@
+eclipse 注释：
+Window-->Preferences-->Java-->Code Style --> Code Templates --> Comments --> types --> Edit 
+
+例如：
+/**   
+*    
+* 项目名称：${project_name}   
+* 类名称：${type_name}   
+* 类描述：   
+* 创建人：${user}   
+* 创建时间：${date} ${time}   
+* @version        
+*/
