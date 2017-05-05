@@ -1,7 +1,6 @@
 package com.evoleht.base.concept;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class Test {
 	public static void main(String[] args) {
@@ -14,6 +13,5 @@ public class Test {
 		
 		HashSet<Object> set = new HashSet<Object>();
 		set.add("");
-		
 	}
 }
