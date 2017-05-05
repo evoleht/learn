@@ -5,6 +5,13 @@
 则如果事务发生回滚，InnoDB可以正常回滚，MyIASM中的数据无法回滚。
 因为，InnoDB支持事务，MyIASM不支持事务
 
+InnoDB 事物实现原理：
+
+
+InnoDB 与MyIasm区别：
+
+
+
 2.InnoDB采用的是两阶段锁协议。在事务执行过程中，随时都可以锁定，锁只有在执行commit或rollback时，才会释放，并且所有的锁都是同一时间被释放。
 这种锁是隐式锁，InnoDB会根据隔离级别在需要的时候自动加锁。
 
