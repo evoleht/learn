@@ -16,7 +16,9 @@ public class ThreadLocalTest {
 	public static void main(String[] args) {
 		Person person = new Person();
 		for (int i = 0; i < 10; i++) {
-			new Worker(person, "name+"+i).start();
+			Worker work = new Worker(person, "name+"+i);
+			work.setName("线程"+i);
+			work.start();
 		}
 	}
 	
