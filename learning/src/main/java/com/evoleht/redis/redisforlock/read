@@ -1,0 +1,8 @@
+redis 分布式锁的示例
+
+以秒杀系统为例
+
+
+pessimistic---悲观锁的实现
+
+optimistic ---乐观锁的实现
