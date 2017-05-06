@@ -77,11 +77,13 @@ public class RedisClient {
         	    String host = PropertiesUtils.getPropValue("redis.host");
         	    String password = PropertiesUtils.getPropValue("redis.passwd");
         	    
-        	    if(password==null || "".equals(password)){
-        	    	jedisPool = new JedisPool(config, "192.168.1.202", REDIS_PORT, CONNECT_TIMEOUT);
-        	    }else{
-        	    	jedisPool = new JedisPool(config, host, REDIS_PORT, CONNECT_TIMEOUT,password);
-        	    }
+        	    
+        	    jedisPool = new JedisPool(config, "127.0.0.1", REDIS_PORT, CONNECT_TIMEOUT);
+//        	    if(password==null || "".equals(password)){
+//        	    	jedisPool = new JedisPool(config, "192.168.1.202", REDIS_PORT, CONNECT_TIMEOUT);
+//        	    }else{
+//        	    	jedisPool = new JedisPool(config, host, REDIS_PORT, CONNECT_TIMEOUT,password);
+//        	    }
             }
         }
       
