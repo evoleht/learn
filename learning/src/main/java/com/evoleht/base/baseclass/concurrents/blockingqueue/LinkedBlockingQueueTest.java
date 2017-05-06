@@ -1,4 +1,4 @@
-package com.evoleht.base.baseclass.collection.queue.blockingqueue;
+package com.evoleht.base.baseclass.concurrents.blockingqueue;
 
 import java.util.NoSuchElementException;
 import java.util.concurrent.LinkedBlockingQueue;
