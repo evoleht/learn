@@ -30,6 +30,12 @@ public class LinkedBlockingQueueTest {
 	 * 
 	 * put: 队列添加一个元素，如果队列满了,则阻塞
 	 * take: 移除并返回头部元素，如果队列为空，则阻塞
+	 * 
+	 * 
+	 * 阻塞队列的实现原理 是采用了AtomicInteger ReentrantLock
+	 * 
+	 *  AtomicInteger 记录了队列里的个数， 取数据时，循环查看AtomicInteger，如果AtomicInteger 为0 则休眠
+	 *  否则取出数据
 	 */
 	
 	static LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<String>(2);
