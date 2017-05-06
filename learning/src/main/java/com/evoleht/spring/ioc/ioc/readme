@@ -1,0 +1,30 @@
+现实生活中，是具体的播放器和具体的媒体文件没有关系，你给它一个Mp3文件他可以播放，给它一个Mp4文件它也可以播放，
+你删掉你的媒体文件，播放器照样在，具体什么播放器，播放什么文件，控制权全部是我们用户自己。
+reverse的示例中基本实现了隔离，具体的播放器跟具体的媒体隔离了，具体的播放器只跟媒体接口和播放器接口有关。
+但是PlayMedia的方法里面的具体对象，写死了，控制权非常小，如果我想用百度影音播放呢，我想换一首音乐呢，只能重新改代码，
+那控制怎么进行转移呢？
+我们可以通过反射来创建，把具体的文件名写在配置文件里，这时候客户端代码也不用变了，只需要改配置文件就好了，稳定性又有了提高，
+
+代码重构：
+
+MediaPlay 类 中PlayMedia方法
+
+
+	//读取配置文件
+	 String args[] = {"classpath*:/configs/spring/applicationContext.xml",
+			 "classpath*:/configs/spring/applicationContext*.xml"
+	 };
+	 ApplicationContext context = new ClassPathXmlApplicationContext(args);
+	 
+	 //读取spring 生成的bean
+	IMediaFile imediaFile  = (IMediaFile) context.getBean("imediaFile");
+	IPlayer iPlayer = (IPlayer) context.getBean("iPlayer");
+	
+
+具对象是哪一个，全由配置文件来控制了，这个具体对象的控制权交给了配置文件了，这也是人们常说的控制反转。
+
+
+
+控制反转IoC是Inversion of Control的缩写，是说对象的控制权进行转移，转移到第三方，比如转移交给了IoC容器，它就是一个创建工厂，
+你要什么对象，它就给你什么对象，有了 IoC容器，依赖关系就变了，原先的依赖关系就没了，它们都依赖IoC容器了，通过IoC容器来建立它们之间的关系。
+

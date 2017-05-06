@@ -1,0 +1,94 @@
+
+java在JDK1.3后引入的动态代理机制，使我们可以在运行期动态的创建代理类。
+
+使用动态代理实现AOP需要有四个角色：被代理的类，被代理类的接口，织入器，和InvocationHandler，
+而织入器使用接口反射机制生成一个代理类，然后在这个代理类中织入代码。
+被代理的类是AOP里所说的目标，InvocationHandler是切面，它包含了Advice和Pointcut。
+
+图片展示  read.jpg
+
+
+动态代理的原理：
+ 	
+就是在运行期，目标类加载后，为接口动态生成代理类，将切面植入到代理类中。
+ 
+ 接口A-->实现类B
+ 切入面 C
+ 
+ 运行的时候，动态的生成一个代理类proxy，这个代理类实现了接口A，
+ 使用代理类来执行方法的时候，代理类会调用 c的方法，完成额外操作之后，在调用B的实现方法
+ 
+ 
+ 
+ 动态代理的核心其实就是代理对象的生成，即Proxy.newProxyInstance(classLoader, proxyInterface, handler)。
+ 
+ 核心代码其实就三行。 
+ 
+ 清单二：生成代理类
+ 
+//获取代理类   
+Class cl = getProxyClass(loader, interfaces);   
+//获取带有InvocationHandler参数的构造方法   
+Constructor cons = cl.getConstructor(constructorParams);   
+//把handler传入构造方法生成实例   
+return (Object) cons.newInstance(new Object[] { h }); 
+ 
+ 
+ 其中getProxyClass(loader, interfaces)方法用于获取代理类，它主要做了三件事情：在当前类加载器的缓存里搜索是否有代理类，
+ 没有则生成代理类并缓存在本地JVM里。
+ 
+ 清单三：查找代理类。
+ 代码略
+ 
+ 代理类的生成主要是以下这两行代码。 
+ 清单四：生成并加载代理类
+ 
+//生成代理类的字节码文件并保存到硬盘中(默认不保存到硬盘)   
+proxyClassFile = ProxyGenerator.generateProxyClass(proxyName, interfaces);   
+//使用类加载器将字节码加载到内存中   
+proxyClass = defineClass0(loader, proxyName,proxyClassFile, 0, proxyClassFile.length); 
+ 
+ 
+ProxyGenerator.generateProxyClass()方法属于sun.misc包下，Oracle并没有提供源代码，
+但是我们可以使用JD-GUI这样的反编译软件打开jre\lib\rt.jar来一探究竟，以下是其核心代码的分析。
+
+    //添加接口中定义的方法，此时方法体为空   
+    for (int i = 0; i < this.interfaces.length; i++) {   
+      localObject1 = this.interfaces[i].getMethods();   
+      for (int k = 0; k < localObject1.length; k++) {   
+         addProxyMethod(localObject1[k], this.interfaces[i]);   
+      }   
+    }   
+      
+    //添加一个带有InvocationHandler的构造方法   
+    MethodInfo localMethodInfo = new MethodInfo("<init>", "(Ljava/lang/reflect/InvocationHandler;)V", 1);   
+      
+    //循环生成方法体代码（省略）   
+    //方法体里生成调用InvocationHandler的invoke方法代码。（此处有所省略）   
+    this.cp.getInterfaceMethodRef("InvocationHandler", "invoke", "Object; Method; Object;")   
+      
+    //将生成的字节码，写入硬盘，前面有个if判断，默认情况下不保存到硬盘。   
+    localFileOutputStream = new FileOutputStream(ProxyGenerator.access$000(this.val$name) + ".class");   
+    localFileOutputStream.write(this.val$classFile);     
+ 
+ 
+ 那么通过以上分析，我们可以推出动态代理为我们生成了一个这样的代理类。
+ 把方法doBusiness的方法体修改为调用LogInvocationHandler的invoke方法。
+ 
+ 清单六：生成的代理类源码 
+ 见ProxyBusiness.java  
+ 
+ 
+ 
+ 小结：
+ 
+ 动态代理在运行期通过接口动态生成代理类，这为其带来了一定的灵活性，但这个灵活性却带来了两个问题，
+ 第一代理类必须实现一个接口，如果没实现接口会抛出一个异常。
+ 第二性能影响，因为动态代理使用反射的机制实现的，首先反射肯定比直接调用要慢，经过测试大概每个代理类比静态代理多出10几毫秒的消耗。
+ 其次使用反射大量生成类文件可能引起Full GC造成性能影响，因为字节码文件加载后会存放在JVM运行时区的方法区（或者叫持久代）中，
+ 当方法区满的时候，会引起Full GC，所以当你大量使用动态代理时，可以将持久代设置大一些，减少Full GC次数
+ 
+ 
+ 
+ 优点：相对于静态的aop，更加灵活。
+ 缺点：切入的关注点需要实现接口，对性能有一定的影响

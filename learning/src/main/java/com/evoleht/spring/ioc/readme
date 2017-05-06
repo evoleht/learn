@@ -1,0 +1,32 @@
+何谓控制反转（IoC = Inversion of Control），
+何谓依赖注入（DI = Dependency Injection）？
+ 
+IoC，用白话来讲，就是由容器控制程序之间的关系，而非传统实现中，由程序代码直接操控。
+这也就是所谓"控制反转"的概念所在：控制权由应用代码中转到了外部容器，控制权的转移，是所谓反转。 
+正 在业界为IoC争吵不休时，大师级人物Martin Fowler也站出来发话，
+以一篇经典文章《Inversion of Control Containers and the Dependency Injection pattern》为IoC正名，
+至此，IoC又获得了一个新的名字："依赖注入 （Dependency Injection）"。
+相对IoC 而言，"依赖注入"的确更加准确的描述了这种古老而又时兴的设计理念。
+从名字上理解，所谓依赖注入，即组件之间的依赖关系由容器在运行期决定，形象的来 说，即由容器动态的将某种依赖关系注入到组件之中。
+
+
+程序说明：
+
+用户操作是MediaPlay类中的PlayMedia方法，打开一个播放器，选择一个文件来播放。
+
+
+程序查看按 1==>2==>3==>4
+
+1.general 依赖
+
+2.reverse 依赖倒置
+
+3.ioc 控制反转
+
+4.di 依赖注入
+
+学习：
+
+根据程序说明自己动手敲写代码。然后在与示例进行比对。
+
+重点是在敲代码的时候体会各个含义。

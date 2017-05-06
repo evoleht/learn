@@ -1,0 +1,56 @@
+
+Reflection
+
+概念：
+JAVA的反射机制是在运行状态中，对应任意的一个类，都能知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；
+这种动态获取的信息以及动态调用对象的方法的功能称之为java的反射机制
+
+作用：
+1,反编译：.class -->.java
+2,通过反射机制访问java对象的属性，方法，构造方法等；
+
+sun提供的反射机制中的类：
+
+java.lang.Class;
+java.lang.reflect.Constructor;
+java.lang.reflect.Field;
+java.lang.reflect.Method;
+java.lang.reflect.Modifier;
+
+获取类对象
+反射机制获取类有三种方法：
+//第一种方式：
+Class class1 = Class.forName("Person");
+
+//第二种方式
+//每个object对象都有class 属性
+Class class2 = Person.class
+
+//第三种方式
+//任何一个java对象都有getClass方法
+Person p = new Person();
+3.Class class3 = p.getClass();
+
+
+创建对象：获取到类以后，我们来创建它的对象，利用newInstance
+
+Class class = Class.forName("Person");
+
+//创建此Class 对象所表示的类的一个新实例
+
+Object o = c.newInstance();//调用了 person 的无参构造方法
+
+获取属性：分为所有的属性和指定的属性
+
+----获取所有的属性---------
+----获取指定的属性----------------
+参考 Demo.java
+
+ 
+
+方法反射
+
+
+ 
+ 
+ 
