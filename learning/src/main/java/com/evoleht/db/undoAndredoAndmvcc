@@ -1,0 +1,153 @@
+MySql-Undo及Redo详解 
+http://blog.csdn.net/alexdamiao/article/details/51872477
+
+Mysql中的MVCC 
+http://blog.csdn.net/chen77716/article/details/6742128
+
+mysql_Innodb的undo_log和redo_log 
+
+http://blog.csdn.net/chenlvzhou/article/details/40537839
+
+understand
+
+InnoDB 读写数据时，采用buffer pool，减少磁盘访问I/O.
+
+buffer pool 存放各种数据的缓存包括有索引页、数据页、undo页、插入缓冲、自适应哈希索引、innodb存储的锁信息
+、数据字典信息等。
+工作方式总是将数据库文件按页（每页16k）读取到缓存池，然后按最近最少使用（lru）的算法来保留在缓冲池中的缓存数据。
+如果数据库文件需要修改，总是先修改在缓存池中的页（发生修改后即为脏页 dirty page），然后在按照一定的频率将缓冲池的脏页刷新到
+文件。
+
+innodb 的事务实现方式是采用 redo log 和 undo log
+
+InnoDB 为了满足事务的持久性，防止buffer pool 数据丢失，InnoDB 引入了redo log。
+为了满足事务的原子性，innodb引入了undo文件。
+
+
+undo 
+
+在操作任何数据之前，首先将数据备份到Undo log，然后进行数据的修改。
+如果出现了错误或者用户执行了rollback语句，系统可以利用undo log 中的备份将数据恢复到事物开始之前的状态。
+与redo log 不同的是， 磁盘上不存在单独的undo log 文件。
+
+innodb 为每行记录都实现了三个隐藏字段
+
+6字节的事务ID（DB_TRX_ID）
+7字节的回滚指针(DB_ROLL_PTR)
+隐藏的ID
+
+利用Undo log实现原子性和持久化的事物简化过程
+假设有A、B两条数据，值为1,2
+A、事物开始
+B、记录A=1到undo log
+C、修改A=3
+D、记录B=2到undo log
+E、修改B=4
+F、将undo log写到磁盘
+G、将数据写到磁盘
+H、事物提交
+隐含的前提条件：数据都是先读到到内存中，然后修改内存中的数据，然后将数据写回磁盘。
+
+
+之所以能同时保证原子和持久化，因为：
+1.更新数据前记录undo log
+2.为了保证持久性，必须将数据在事务提交前写到磁盘。只要事物提交成功，数据必然已经持久化。
+3.undo log 必须优先于数据持久化到磁盘，如果在G、H之间系统崩溃，undo log 是完整的，可以用来回滚事物。
+4.如果在A-F之间系统崩溃，因为数据没有持久化到磁盘。所以磁盘上的数据还保持在事物开启前的状态。
+
+缺陷：每个事物提交前将数据和undo log 写入磁盘，导致大量的I/O，因此性能很低。
+
+rodo log
+
+redo log 与undo log 相反，Redo log 记录的是新数据的备份。事物提交之前，只要将redo log 持久化即可
+
+不需要将数据持久化。当系统崩溃时，虽然数据没有持久化，但是redo log 已经持久化。 系统可以根据redo log的内容，将所有数据恢复到
+最新的状态。
+
+undo + redo 事物的简化过程
+
+假设A、B两个数据，值分别为1,2
+A、事物开始
+B、记录A=1到undo log 
+C、修改A=3
+D、记录A=3到redo log
+E、记录 B=2到undo log
+F、修改B=4
+G、记录B=4到redo log
+H、将redo log 写入磁盘
+I、事物提交
+
+undo + redo 事物特点
+1.为了保证持久化，必须在事物提交之前将redo log 持久化
+2.数据不需要在事务提交前写入磁盘，而是缓存在内存。
+3.redo log 保证了事物的持久性
+4.undo log 保证了事物的原子性
+5.有一个隐含的条件，数据必须要晚于redo log 写入持久存储
+
+InnoDB为了降低复杂度，InnoDB将Undo log 看作数据，因此记录Undo log 的操作也会记录到 redo log 中
+
+undo log 和 redo log 本身是分开的。innodb的undo 是记录在数据文件（ibd）中的，而且innodb将undo的内容也看做
+数据，因此对undo log的本身操作（如向undo log 中插入一条undo 记录等），都会记录redo log。undo log可以不必立即持久化到
+磁盘上。即使丢失了，也可以通过redo log将其恢复。
+
+
+包含undo log 操作的redo log：
+
+记录1：<trx1, undo log inser <undo_insert...>>
+记录2: <trx1, inset...>
+记录3: <trx2, undo log insert<undo_update..>>
+记录4: <trx2, undate....>
+记录5： <trx3, undo log insert<undo_delete...>>
+记录6: <trx3, delete....>
+
+
+到这里有个问题还没有弄清楚。既然redo 每页事务性，那岂不是会重新执行被回滚了事物？
+确实是这样。
+
+同时Innodb也会将事务回滚时的操作也记录到redo log中。回滚操作本质上也是对数据进行修改，因此回滚时对数据的操作也会记录到Redo Log中。
+一个回滚了的事务的Redo Log，看起来是这样的：
+记录1: <trx1, Undo log insert <undo_insert …>>
+记录2: <trx1, insert A…>
+记录3: <trx1, Undo log insert <undo_update …>>
+记录4: <trx1, update B…>
+记录5: <trx1, Undo log insert <undo_delete …>>
+记录6: <trx1, delete C…>
+记录7: <trx1, insert C>
+记录8: <trx1, update B to old value>
+记录9: <trx1, delete A>
+一个被回滚了的事务在恢复时的操作就是先redo再undo，因此不会破坏数据的一致性.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
