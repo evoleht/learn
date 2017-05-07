@@ -1,0 +1,119 @@
+
+1.or 
+innodb：
+
+当两列都可以走索引查找的时候，or查询可以走索引，否则全表扫描
+
+name 可以走索引 name_age_index, phone 可以走索引 phone_index
+age 不符合最左原则，无法走索引
+
+SELECT * from user where age = 22 or phone = '345'; -- 全表扫描
+
+SELECT * from user where name = 'a22' or phone = '345'; -- 索引扫描
+
+
+修改为 union
+
+SELECT * from user where age = 22 
+UNION
+SELECT * from user WHERE phone = '345'
+
+
+2. in 
+
+存在索引,走索引
+select * from user where phone in ('112','123','145');
+
+
+phone 为varchar类型, 使用时,数据库自动转换,但是走全表查询.
+
+select * from user where phone in (112,123,145);
+
+
+
+
+3.exists 与 in
+
+http://www.cnblogs.com/seasons1987/archive/2013/07/03/3169356.html
+
+select * from A where id in(select id from B)
+
+相当于
+
+List result = [];
+Array A = (select * from A)
+Array B = (select * from B)
+
+for(int i=0; i<A.length; i++) {
+  
+  for(int j= 0;j<B.length;j++) {
+  	if(A[i].id == B[i].id) {
+  		result.add(A[i])
+  		break;
+  	}
+  }
+}
+
+return result;
+
+当B表数据比较大时，不适合用IN，因为会将B表的数据全部都遍历一遍。
+
+结论： IN() 适合B表比A表数据小的情况
+
+select * from A a
+
+where exists (select 1 from B b where b.id = a.id)
+
+过程相当于
+
+List result= [];
+
+Array A = (select * from A)
+
+for(i=0;i<A.length;i++) {
+	if(exists[A[i].id])//执行select 1 from B b where b.id = A[I].id
+	result.add(A[i])
+}
+return result;
+当B表数据大于A表数据时，适合使用exists();
+
+
+
+not exists 和 not in
+
+无论那个表的数据大， not exists 的效率都会比 not in 的效率高
+
+
+
+
+
+马超:
+1.写sql时养成分析执行效率的习惯，利用MySQL的explain查询sql的执行计划，根据执行计划进行sql优化；
+主要根据type列显示关联类型，关联类型如下，依次从左到右依次为从差到优：
+ALL（全表扫描）——>index（按索引次序全表扫描）——>range（范围扫描，有限制的索引扫描）——>ref（索引访问）——>eq_ref（主键或唯一性索引扫描）——>const/system（转换常量）——>null（优化阶段分解查询）
+2.where条件使用频繁的字段加二级索引
+3.在创建多列索引时根据”最左前缓“原则，将where中使用最频繁的字段放到索引最左侧
+4.不要过分使用索引，只保留必要的索引，因为索引在提高查询效率的同时会降低更新效率；
+5.如果经常需要由某个单例索引查询固定的几个列，那么应该将这几列覆盖为联合索引,这样可以直接访问b-tree中节点存放的值，无需在读取表；
+6.可使用 locate、position 和 instr代替like "%%"
+7.尽量避免in、not in、exists、not exists+子查询，可考虑连接查询代替方案
+8.连接查询和嵌套子查询时尽量过滤掉无用数据
+9.尽量避免在where条件中使用!=、<>、is null、is not null ，无法走索引
+10.慎用or，必要的时候可以用union 、union all 代替 or
+11.where中慎用参数如：where name = @name
+12.避免在"="左边使用函数,否则导致无法走索引
+13.尽量避免使用select * ，用字段列不代替* ,不要返回不需要的字段
+14.尽量避免select 大数据量,检查业务是否合理，大数据量查询尽量limit分页
+15.慎用find_in_set查询大数据量，否则性能较差
+
+
+
+
+
+
+
+
+
+
+
+
