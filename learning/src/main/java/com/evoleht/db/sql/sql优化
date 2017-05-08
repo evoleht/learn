@@ -84,7 +84,8 @@ not exists 和 not in
 无论那个表的数据大， not exists 的效率都会比 not in 的效率高
 
 
-
+4.distinct 与 group by
+group by 的效率比distinct 的效率要高
 
 
 马超:
