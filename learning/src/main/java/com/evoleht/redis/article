@@ -1,0 +1,36 @@
+
+
+1. nosql--简介 、 
+redis详解（一）-- 概述、
+redis详解（三）-- 面试题 、
+redis详解（二）-- 数据类型详解、
+redis详解（四）-- 高可用分布式集群  
+ 
+http://blog.csdn.net/guchuanyun111/article/category/6335900
+
+2.
+【Redis笔记（一）】 环境配置 
+【Redis笔记（二）】 Redis数据结构 - string字符串 
+【Redis笔记（三）】 Redis数据结构 - hash哈希 
+【Redis笔记（四）】 Redis数据结构 - list链表 
+ 【Redis笔记（五）】 Redis数据结构 - set集合 
+ 【Redis笔记（六）】 Redis数据结构 - 有序集合zset 
+ 【Redis学习笔记（七）】 Redis中的事务 
+ 
+http://blog.csdn.net/Xiejingfa/article/category/6064201/2
+
+
+
+
+redis 高级应用及场景
+http://blog.csdn.net/u011204847/article/details/51302109
+
+
+Redis分布式锁----乐观锁的实现，以秒杀系统为例 
+http://blog.csdn.net/Evankaka/article/details/70570200?locationNum=9&fps=1
+
+源码
+http://blog.csdn.net/Androidlushangderen/article/category/2647211/3
+
+问题：
+1.redis 如何保证并发
