@@ -1,4 +1,4 @@
-package com.evoleht.algorithm;
+package com.evoleht.algorithm.str;
 
 public class StringReverseTest {
 
