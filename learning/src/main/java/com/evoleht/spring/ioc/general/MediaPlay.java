@@ -1,4 +1,4 @@
-package test.ioc.general;
+package com.evoleht.spring.ioc.general;
 
 /**
  * 媒体播放功能。

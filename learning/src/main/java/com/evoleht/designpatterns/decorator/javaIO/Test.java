@@ -1,4 +1,4 @@
-package com.evoleht.DesignPatterns.decorator.javaIO;
+package com.evoleht.designpatterns.decorator.javaIO;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

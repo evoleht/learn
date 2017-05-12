@@ -1,20 +1,20 @@
-package com.evoleht.DesignPatterns.decorator.beverage;
+package com.evoleht.designpatterns.decorator.beverage;
 
-public class Milk extends CondimentDecorator {
+public class Mocha extends CondimentDecorator {
 	
 	Beverage beverage;
-	
-	public Milk(Beverage beverage) {
+	public Mocha(Beverage beverage) {
 		this.beverage = beverage;
 	}
 	
 	@Override
 	public String getDescription() {
-		return "Milk" + beverage.getDescription();
+		return "Mocha" + beverage.getDescription();
 	}
 
 	@Override
 	public double cost() {
 		return 2.5 + beverage.cost();
 	}
+
 }

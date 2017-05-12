@@ -1,4 +1,4 @@
-package com.evoleht.DesignPatterns.decorator.beverage;
+package com.evoleht.designpatterns.decorator.beverage;
 
 public class Test {
 	
