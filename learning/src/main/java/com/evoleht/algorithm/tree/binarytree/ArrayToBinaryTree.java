@@ -1,5 +1,7 @@
 package com.evoleht.algorithm.tree.binarytree;
 
+import java.util.LinkedList;
+
 import com.evoleht.algorithm.TreeNode;
 
 /**
@@ -25,8 +27,14 @@ public class ArrayToBinaryTree {
 	public static void main(String[] args) {
 		int arr[] = {1,2,3,4,5,6,7,8,9};
 		TreeNode node = sortToBST(arr, 0, arr.length -1);
-		System.out.println(node.val);
-		System.out.println(node.left.val);
+		System.out.println("层次遍历----------");
+		print(node);
+		System.out.println("先序遍历---------");
+		preorder(node);
+		System.out.println("中序遍历------------");
+		inorder(node);
+		System.out.println("后序遍历-------------");
+		postorder(node);
 	}
 	
     public static TreeNode  sortToBST(int arr[], int start, int end) {
@@ -41,10 +49,69 @@ public class ArrayToBinaryTree {
 		TreeNode node = new TreeNode(0);
 		
 		node.val = arr[mid];
-		System.out.println(node.val);
 		node.left = sortToBST(arr, start, mid-1);
 		node.right = sortToBST(arr, mid + 1, end);
 		return node;
 	}
 	
+    
+    /**
+     * 层次遍历
+     */
+    public static void print(TreeNode root) {
+    	LinkedList<TreeNode> list = null;
+    	if(root != null) {
+    		list = new LinkedList<TreeNode>();
+    		list.offer(root);
+    		while(!list.isEmpty()){
+    			TreeNode node = list.poll();
+    			printVal(node);
+    			if(node.left != null) {
+    				list.offer(node.left);
+    			}
+    			if(node.right !=null) {
+    				list.offer(node.right);
+    			}
+    		}
+    	}
+    }
+    
+    /**
+     *  先序遍历
+     */
+    public static void preorder(TreeNode node) {
+    	if(node != null) {
+    		printVal(node);
+    		preorder(node.left);
+    		preorder(node.right);
+    	}
+    }
+    
+    /**
+     * 中序遍历
+     */
+    public static void inorder(TreeNode node) {
+    	if(node != null) {
+    		inorder(node.left);
+    		printVal(node);
+    		inorder(node.right);
+    	}
+    }
+    
+    /**
+     * 后序遍历
+     */
+    public static void postorder(TreeNode node) {
+    	if(node != null) {
+    		postorder(node.left);
+    		postorder(node.right);
+    		printVal(node);
+    	}
+    }
+    
+    public static void printVal(TreeNode node) {
+    	if(node != null) {
+    		System.out.println(node.val);
+    	}
+    }
 }
