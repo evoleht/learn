@@ -60,3 +60,10 @@ git pull
 
 eclipse 提交时忽略target文件夹方法：
 选中需要忽略的文件夹或文件，右键Team  选择Ignore 即可
+
+查看分支：git branch
+创建分支： git branch name
+切换分支： git checkeout name
+创建+切换分支： git checkout -b name
+合并某分支到当前分支： git merge name
+删除分支：git branch -d name
