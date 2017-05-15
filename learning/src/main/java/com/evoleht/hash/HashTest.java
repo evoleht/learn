@@ -1,5 +1,7 @@
 package com.evoleht.hash;
 
+import java.util.HashSet;
+
 
 public class HashTest {
 
@@ -14,7 +16,10 @@ public class HashTest {
 		System.out.println(Integer.MIN_VALUE);
 		System.out.println(Math.abs(Integer.MIN_VALUE));
 		System.out.println(abs(Integer.MIN_VALUE));
-		
+		HashSet<Integer> set = new HashSet<Integer>();
+		set.add(1);
+		set.add(1);
+		set.add(2);
 	}
 	
 	public static long abs(long a) {

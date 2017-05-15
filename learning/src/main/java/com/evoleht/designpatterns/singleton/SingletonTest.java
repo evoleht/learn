@@ -2,7 +2,7 @@ package com.evoleht.designpatterns.singleton;
 
 public class SingletonTest {
 	
-	public static SingletonTest  singletonTest= null;
+	public static volatile SingletonTest  singletonTest= null;
 	
 	private SingletonTest() {
 	}
