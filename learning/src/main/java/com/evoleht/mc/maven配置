@@ -14,5 +14,15 @@ export PATH=$PATH:$M2_HOME/bin
 
 编辑完成之后 按esc 然后 shift+zz 退出编辑
 
-5.检查maven 是否安装成功
+5.修改之后使之生效
+source ～／.bash_profile
+
+6.检查maven 是否安装成功
 mvn -version
+
+
+
+7.配置setting.xml
+修改 setting.xml
+mv /Users/momo/mygit/learning/src/main/java/com/evoleht/mc/settings.xml ~/.m2
+
