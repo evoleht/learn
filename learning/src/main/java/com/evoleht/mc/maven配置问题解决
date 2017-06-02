@@ -1,0 +1,35 @@
+1.Could not create local repository
+网上查找了一些方法，没有实际解决问题
+
+看问题描述，Could not create local repository at /Users/wangzhaoshuai/.m2/repository
+
+不能在本地生成repository
+
+目录为 ／Users/wangzhaoshuai/.m2/repository
+
+mc本上没有创建过wangzhaoshuai账户，检查settings.xml,发现配置
+
+<localRepository>/Users/wangzhaoshuai/.m2/repository</localRepository>
+
+找到问题。
+
+解决：
+
+evoleht:.m2 evoleht$ cd ~/.m2
+evoleht:.m2 evoleht$ ls
+repository	settings.xml
+evoleht:.m2 evoleht$ pwd
+/Users/momo/.m2
+evoleht:.m2 evoleht$
+
+修改配置文件为
+<localRepository>/Users/momo/.m2/repository</localRepository>
+
+问题解决！
+
+
+问题产生原因：
+新入职时，机器上创建的用户为momo，后虽然修改了机器用户也名为evoleht 但还是沿用之前但目录结构。
+这个问题需要注意。
+
+

@@ -26,3 +26,4 @@ mvn -version
 修改 setting.xml
 mv /Users/momo/mygit/learning/src/main/java/com/evoleht/mc/settings.xml ~/.m2
 
+mv ~/.m2/settings.xml /Users/momo/mygit/learning/src/main/java/com/evoleht/mc
