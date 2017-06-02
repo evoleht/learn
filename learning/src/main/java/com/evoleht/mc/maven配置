@@ -1,0 +1,18 @@
+1.官方网站下载：
+http://maven.apache.org/download.cgi
+下载3.5.0版本 apache-maven-3.5.0-bin.zip
+
+2.下载完成之后解压
+3.移动apache-maven-3.5.0 文件夹到／usr/local下
+mv /Users/momo/Downloads/apache-maven-3.5.0 /usr/loacl
+4.配置环境变量
+
+vim ~/.bash_profile
+
+export M2_HOME=/usr/local/apache-maven-3.3.9
+export PATH=$PATH:$M2_HOME/bin
+
+编辑完成之后 按esc 然后 shift+zz 退出编辑
+
+5.检查maven 是否安装成功
+mvn -version
