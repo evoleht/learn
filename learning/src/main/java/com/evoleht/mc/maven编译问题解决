@@ -1,0 +1,8 @@
+问题：
+读取/Users/momo/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar时出错; invalid LOC header (bad signature)
+
+原因：
+包没有下载正确
+
+解决：
+将文件都删除了，重新下载
