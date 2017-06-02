@@ -1,0 +1,7 @@
+evoleht:mygit evoleht$ cd ~/.ssh
+evoleht:.ssh evoleht$ ls
+id_rsa		id_rsa.pub
+evoleht:.ssh evoleht$ cat id_rsa.pub
+
+xxxxxxxxxxxxxxxxxxxxx
+evoleht:.ssh evoleht$
