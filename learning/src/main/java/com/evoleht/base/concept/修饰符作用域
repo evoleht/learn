@@ -5,3 +5,9 @@ private： 只能被自己访问
 protected: 自身、子类、同一包中的类可以访问
 
 default：自身、同一包中的类可以访问
+
+
+
+
+接口中方法默认的修饰符为 public abstract
+
