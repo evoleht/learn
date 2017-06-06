@@ -1,6 +1,5 @@
 package com.evoleht.spring.aop.javassist;
 
-import ewebeditor.admin.default_jsp;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;

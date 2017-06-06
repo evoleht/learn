@@ -1,6 +1,7 @@
 package com.evoleht.spring.ioc.ioc;
 
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 媒体播放功能 
