@@ -3,6 +3,11 @@ package com.evoleht.base.baseclass.map.concurrenthashmaptest;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * ConcurrentHashMap putIfAbsent
+ * @author evoleht
+ *
+ */
 public class ConcurrentHashMapPutTest {
 	
 	public static void main(String[] args) {
@@ -22,6 +27,7 @@ public class ConcurrentHashMapPutTest {
 		System.out.println(map.get("test"));
 	}
 	
+	//单线程
 	public static void test2() {
 		System.out.println("test2-----");
 		ConcurrentHashMap<String, AtomicLong> map = new ConcurrentHashMap<String, AtomicLong>();
