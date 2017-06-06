@@ -10,4 +10,3 @@ default：自身、同一包中的类可以访问
 
 
 接口中方法默认的修饰符为 public abstract
-
