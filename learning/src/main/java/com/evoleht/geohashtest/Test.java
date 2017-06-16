@@ -49,6 +49,12 @@ public class Test{
           double lon2=116.463563;
           
           double dist;  
+          
+          double la = 39.996147, lg =  116.473444;
+          double lg2 = 116.474002,la2 = 39.996709;
+          
+          double dist1 = Test.GetDistance(lg, la, lg2, la2);
+          System.out.println("=====>" + dist1);
             
           dist=Test.GetDistance(lon1, lat1, lon2, lat2);   
           System.out.println("两点相距：" + dist + " 米");  

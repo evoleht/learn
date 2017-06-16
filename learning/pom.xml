@@ -97,6 +97,12 @@
             <artifactId>cglib</artifactId>  
             <version>3.1</version>  
         </dependency>
+        
+        <dependency>
+			<groupId>ch.hsr</groupId>
+			<artifactId>geohash</artifactId>
+			<version>1.0.10</version>
+		</dependency>
   </dependencies>
   
   <build>
