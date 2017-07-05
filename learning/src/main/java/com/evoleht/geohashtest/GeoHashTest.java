@@ -22,7 +22,8 @@ public class GeoHashTest {
 		System.out.println("两点相距：" + dist + " 米");
 
 		System.out.println("--------------");
-		geoHashTest();
+		//geoHashTest();
+		print();
 
 	}
 
@@ -104,7 +105,22 @@ public class GeoHashTest {
 
 //		System.out.println("经纬度：" + getDistance(lat1, lon1, lat8, lon8));
 	}
-
+	
+	public static void print()  {
+		double lat1 = 39.00;
+		double lg1 = 116.00;
+		
+		double lat2 = 40.00;
+		double lg2 = 116.00;
+		
+		GeoHash geoHash1 = GeoHash.withCharacterPrecision(lat1, lg1, 8);
+		GeoHash geoHash2 = GeoHash.withCharacterPrecision(lat2, lg2, 8);
+		
+		System.out.println("第一个点：" + geoHash1.toBase32());
+		
+		System.out.println("第二个点：" + geoHash2.toBase32());
+	}
+	
 	public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
 		if (Math.abs(lat1) > 90 || Math.abs(lon1) > 180 || Math.abs(lat2) > 90 || Math.abs(lon2) > 180) {
 			throw new IllegalArgumentException("The supplied coordinates are out of range.");
