@@ -1,0 +1,3 @@
+Premain-Class: com.evoleht.base.sizeofobject.SizeOfAgent
+Boot-Class-Path:
+Can-Redefine-Classes: false
