@@ -8,6 +8,30 @@
   <name>learning Maven Webapp</name>
   <!-- <url>http://maven.apache.org</url> -->
   
+  <build>  
+ 	<finalName>learning</finalName>
+	<!-- <defaultGoal>compile</defaultGoal> -->
+        
+        <plugins>
+			<plugin>  
+           		<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>  
+                <version>2.5.5</version>  
+                <configuration>  
+                    <finalName>SizeOfAgent</finalName>  
+                    <archive>  
+                        <manifestEntries>  
+                            <Premain-class>com.evoleht.base.sizeofobject.SizeOfAgent</Premain-class>  
+                            <Boot-Class-Path></Boot-Class-Path>  
+                            <Can-Redefine-Classes>false</Can-Redefine-Classes>  
+                        </manifestEntries>  
+                        <addMavenDescriptor>false</addMavenDescriptor>  
+                    </archive>  
+                </configuration>  
+            </plugin>
+		</plugins>
+    </build>
+    
   <properties>
 		<spring.version>3.1.1.RELEASE</spring.version>
 	</properties>
@@ -103,10 +127,36 @@
 			<artifactId>geohash</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.zookeeper</groupId>
+		  <artifactId>zookeeper</artifactId>
+		  <version>3.4.9</version>
+		</dependency>
   </dependencies>
   
-  <build>
-    <finalName>learning</finalName>
-    <defaultGoal>compile</defaultGoal>
-  </build>
+   
+    
+  <!-- <build>
+	<finalName>learning</finalName>
+	<defaultGoal>compile</defaultGoal>
+	<plugins>
+		<plugin>  
+            <artifactId>maven-jar-plugin</artifactId>  
+            <version>2.4</version>  
+            <configuration>  
+                <finalName>SizeOfAgent</finalName>  
+                <archive>  
+                    <manifestEntries>  
+                        <Premain-class>com.evoleht.base.sizeofobject.SizeOfAgent</Premain-class>  
+                        <Boot-Class-Path></Boot-Class-Path>  
+                        <Can-Redefine-Classes>false</Can-Redefine-Classes>  
+                    </manifestEntries>  
+                    <addMavenDescriptor>false</addMavenDescriptor>  
+                </archive>  
+            </configuration>  
+        </plugin> 
+	</plugins>
+</build> -->
+
 </project>
