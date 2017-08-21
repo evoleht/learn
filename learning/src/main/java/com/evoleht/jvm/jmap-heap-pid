@@ -1,0 +1,42 @@
+jmap -heap pid 
+        查看java 堆（heap）使用情况 
+        using thread-local object allocation. 
+        Parallel GC with 4 thread(s)          //GC 方式 
+         Heap Configuration:       //堆内存初始化配置 
+         MinHeapFreeRatio=40     //对应jvm启动参数-XX:MinHeapFreeRatio设置JVM堆最小空闲比率(default 40) 
+         MaxHeapFreeRatio=70  //对应jvm启动参数 -XX:MaxHeapFreeRatio设置JVM堆最大空闲比率(default 70) 
+         MaxHeapSize=512.0MB  //对应jvm启动参数-XX:MaxHeapSize=设置JVM堆的最大大小 
+         NewSize  = 1.0MB          //对应jvm启动参数-XX:NewSize=设置JVM堆的‘新生代’的默认大小 
+         MaxNewSize =4095MB   //对应jvm启动参数-XX:MaxNewSize=设置JVM堆的‘新生代’的最大大小 
+         OldSize  = 4.0MB            //对应jvm启动参数-XX:OldSize=<value>:设置JVM堆的‘老生代’的大小 
+         NewRatio  = 8         //对应jvm启动参数-XX:NewRatio=:‘新生代’和‘老生代’的大小比率 
+         SurvivorRatio = 8    //对应jvm启动参数-XX:SurvivorRatio=设置年轻代中Eden区与Survivor区的大小比值 
+          PermSize= 16.0MB       //对应jvm启动参数-XX:PermSize=<value>:设置JVM堆的‘永生代’的初始大小 
+          MaxPermSize=64.0MB  //对应jvm启动参数-XX:MaxPermSize=<value>:设置JVM堆的‘永生代’的最大大小 
+Heap Usage:               //堆内存分步 
+          PS Young Generation 
+          Eden Space:          //Eden区内存分布 
+            capacity = 20381696 (19.4375MB)  //Eden区总容量 
+            used     = 20370032 (19.426376342773438MB)  //Eden区已使用 
+            free     = 11664 (0.0111236572265625MB)  //Eden区剩余容量 
+            99.94277218147106% used  //Eden区使用比率 
+         From Space:        //其中一个Survivor区的内存分布 
+             capacity = 8519680 (8.125MB) 
+             used     = 32768 (0.03125MB) 
+             free     = 8486912 (8.09375MB) 
+             0.38461538461538464% used 
+        To Space:            //另一个Survivor区的内存分布 
+            capacity = 9306112 (8.875MB) 
+            used     = 0 (0.0MB) 
+            free     = 9306112 (8.875MB) 
+            0.0% used 
+        PS Old Generation  //当前的Old区内存分布 
+            capacity = 366280704 (349.3125MB) 
+            used     = 322179848 (307.25464630126953MB) 
+            free     = 44100856 (42.05785369873047MB) 
+            87.95982001825573% used 
+        PS Perm Generation  //当前的 “永生代” 内存分布 
+            capacity = 32243712 (30.75MB) 
+            used     = 28918584 (27.57891082763672MB) 
+            free     = 3325128 (3.1710891723632812MB) 
+            89.68751488662348% used 

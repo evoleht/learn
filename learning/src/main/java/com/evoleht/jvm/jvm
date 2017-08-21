@@ -1,0 +1,23 @@
+
+查看java进程详细信息
+ps -ef | grep java
+
+查看linux 进程信息
+Ps aux
+
+查看swap 空间你使用
+Top  (出现后) f  p
+
+
+查看堆使用情况
+jmap -heap pid
+
+
+查看内存具体情况
+jmap -histo pid > temp
+
+vim temp
+
+
+查看堆各个区域使用及gc情况  1000-1秒，300-打印300次
+jstat -gcutil pid 1000 300

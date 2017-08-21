@@ -1,0 +1,18 @@
+名词解释：
+
+1.Shallow size
+
+对象自身占用的内存大小，不包括它引用的对象
+针对非数组类型的对象，它的大小就是对象与它所有的成员变量大小的总和，当然这里面还包括一些java语言特性的数据存储单元。
+针对数组类型的对象，它的大小是数组元素对象的大小总和。
+
+2.Retained Size
+Reatined Size = 当前对象大小 + 当前对象可直接或间接引用到的对象的大小总和。(间接引用的含义：A->B->C, C就是间接引用) 
+换句话说，Retained Size就是当前对象被GC后，从Heap上总共能释放掉的内存。 
+不过，释放的时候还要排除被GC Roots直接或间接引用的对象。他们暂时不会被被当做Garbage。
+
+
+list objects -- with outgoing references : 查看这个对象持有的外部对象引用。
+list objects -- with incoming references : 查看这个对象被哪些外部对象引用。
+show objects by class  --  with outgoing references ：查看这个对象类型持有的外部对象引用
+show objects by class  --  with incoming references ：查看这个对象类型被哪些外部对象引用   
